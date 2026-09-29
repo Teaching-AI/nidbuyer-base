@@ -16,8 +16,9 @@ Cette année, on en fait un **agent** : un assistant qui choisit lui-même ses o
 ```bash
 git clone <votre copie de ce repo>
 cd nidbuyer-base
-python -m venv .venv && source .venv/bin/activate      # Windows : .venv\Scripts\activate
-pip install -r exercices/requirements-tp.txt
+uv venv --python 3.12                                  # telecharge Python 3.12 s'il manque
+source .venv/bin/activate                              # Windows : .venv\Scripts\activate
+uv pip install -r exercices/requirements-tp.txt
 
 export LLM_PROVIDER=gemini
 export GEMINI_API_KEY=<votre clé gratuite : https://aistudio.google.com>
@@ -25,6 +26,11 @@ export LLM_MODEL=<modèle donné en cours>
 
 python -m exercices.m1_agent "Je cherche un T3 au Mourillon sous 250 000 euros, c'est une bonne affaire ?"
 ```
+
+Windows (PowerShell) : `$env:GEMINI_API_KEY="..."` au lieu de `export GEMINI_API_KEY=...`.
+
+Installer uv : https://docs.astral.sh/uv/ (Mac/Linux : `curl -LsSf https://astral.sh/uv/install.sh | sh`).
+Sans uv : `python -m venv .venv` puis `pip install -r exercices/requirements-tp.txt` (Python 3.10+).
 
 Sans clé ni réseau : `export LLM_PROVIDER=fake` pour voir la mécanique (réponses factices).
 
@@ -67,7 +73,7 @@ tests/             # Tests
 L'API complète a besoin du modèle d'embedding (plus lourd à installer) :
 
 ```bash
-pip install -r requirements.txt
+uv pip install -r requirements.txt
 cp .env.example .env        # puis remplir
 uvicorn backend.main:app --reload     # → http://localhost:8000/docs
 streamlit run frontend/app.py         # → http://localhost:8501
