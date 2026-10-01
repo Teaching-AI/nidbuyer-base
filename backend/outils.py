@@ -54,16 +54,19 @@ def ecart_au_marche(bien_id: str) -> dict:
     Compare le prix au m2 d'un bien a la mediane des ventes DVF de son quartier.
 
     bien_id : identifiant d'un bien renvoye par chercher_biens (ex. "a03").
-    Retourne prix_m2, mediane_quartier_m2, ecart_pct (negatif = moins cher que le marche).
+    Retourne prix (euros), surface (m2), quartier, prix_m2, mediane_quartier_m2,
+    ecart_pct (negatif = moins cher que le marche).
     """
     bien = next((b for b in _annonces() if b["id"] == bien_id), None)
     if bien is None:
         raise ValueError(f"bien inconnu : {bien_id}. Utiliser un id renvoye par chercher_biens.")
     mediane = _mediane(bien["quartier"])
     prix_m2 = bien["prix"] / bien["surface"]
+    resultat = {"bien_id": bien_id, "prix": bien["prix"], "surface": bien["surface"],
+                "quartier": bien["quartier"], "prix_m2": round(prix_m2)}
     if mediane is None:
-        return {"bien_id": bien_id, "prix_m2": round(prix_m2), "mediane_quartier_m2": None, "ecart_pct": None}
-    return {"bien_id": bien_id, "prix_m2": round(prix_m2), "mediane_quartier_m2": round(mediane),
+        return {**resultat, "mediane_quartier_m2": None, "ecart_pct": None}
+    return {**resultat, "mediane_quartier_m2": round(mediane),
             "ecart_pct": round((prix_m2 - mediane) / mediane * 100, 1)}
 
 
