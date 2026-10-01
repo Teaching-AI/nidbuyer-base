@@ -37,7 +37,7 @@ Sans clé ni réseau : `export LLM_PROVIDER=fake` pour voir la mécanique (répo
 > **Votre clé d'API est un secret.** Jamais dans le code, jamais dans un commit, jamais sur
 > une capture d'écran. Le fichier `.env` est ignoré par git : c'est là qu'elle va.
 
-Énoncés des TP : fournis en cours (TP 1 « Premier agent », TP 2 « Casser l'agent »).
+Énoncés des TP : dossier [`enonces/M1/`](enonces/M1/) ([TP 1 « Premier agent »](enonces/M1/TP1-premier-agent.md), [TP 2 « Casser l'agent »](enonces/M1/TP2-casser-l-agent.md)).
 
 ---
 
