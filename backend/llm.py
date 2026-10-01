@@ -10,7 +10,8 @@ d'environnement, sans toucher au code metier :
     LLM_PROVIDER=fake     reponses deterministes, sans reseau (tests, CI)
 
 Variables :
-    LLM_MODEL             ex. gemini-3.8-flash (vertex), qwen3:4b (ollama)
+    LLM_MODEL             ex. gemini-3.5-flash (gemini, vertex), qwen3:4b (ollama)
+    LLM_MODEL_SECOURS     modele essaye si LLM_MODEL est sature (gemini, vertex)
     GEMINI_API_KEY        (gemini)
     GOOGLE_CLOUD_PROJECT, GOOGLE_CLOUD_LOCATION   (vertex)
     OLLAMA_URL            defaut http://localhost:11434 (ollama)
@@ -61,7 +62,7 @@ def provider() -> str:
 
 
 def modele() -> str:
-    defaut = {"gemini": "gemini-3.8-flash", "vertex": "gemini-3.8-flash", "ollama": "qwen3:4b", "fake": "fake"}
+    defaut = {"gemini": "gemini-3.5-flash", "vertex": "gemini-3.5-flash", "ollama": "qwen3:4b", "fake": "fake"}
     return os.environ.get("LLM_MODEL", defaut.get(provider(), ""))
 
 
@@ -159,6 +160,39 @@ def _client_google():
     return _vertex_client
 
 
+def _generate_google(contents, config):
+    """
+    Appel Gemini tolerant aux pannes passageres : si le modele est sature (503), hors quota
+    (429) ou si la connexion coupe, on reessaie une fois le meme modele apres 2 s, puis
+    LLM_MODEL_SECOURS. Retourne (reponse, modele utilise).
+    """
+    import httpx
+    from google.genai import errors
+
+    client = _client_google()
+    candidats = [modele(), modele()]
+    secours = os.environ.get("LLM_MODEL_SECOURS", "").strip()
+    if secours and secours != modele():
+        candidats.append(secours)
+    derniere = None
+    for i, nom in enumerate(candidats):
+        if i == 1:
+            time.sleep(2)
+        try:
+            return client.models.generate_content(model=nom, contents=contents, config=config), nom
+        except (errors.ServerError, httpx.TransportError) as e:
+            derniere = e
+        except errors.ClientError as e:
+            if getattr(e, "code", None) != 429:
+                raise
+            derniere = e
+        logger.warning("Modele %s indisponible (%s), essai du suivant", nom, str(derniere)[:120])
+    raise LLMError(
+        f"Gemini ne repond pas ({', '.join(dict.fromkeys(candidats))}) : {str(derniere)[:200]}. "
+        "Reessayez dans une minute, ou changez LLM_MODEL dans .env (ex. gemini-flash-latest)."
+    ) from derniere
+
+
 def _vertex(prompt, system, schema, temperature, images):
     from google.genai import types
 
@@ -168,7 +202,7 @@ def _vertex(prompt, system, schema, temperature, images):
         config.response_mime_type = "application/json"
         config.response_schema = schema
     contents = [types.Part.from_bytes(data=img, mime_type=_mime(img)) for img in images] + [prompt]
-    r = _vertex_client.models.generate_content(model=modele(), contents=contents, config=config)
+    r, _ = _generate_google(contents, config)
     u = r.usage_metadata
     return r.text or "", getattr(u, "prompt_token_count", None), getattr(u, "candidates_token_count", None)
 
@@ -282,7 +316,6 @@ def _pour_modele(appel: dict):
 
 def _agent_google(question, par_nom, system, max_tours, temperature):
     from google.genai import types
-    client = _client_google()
     config = types.GenerateContentConfig(
         system_instruction=system, temperature=temperature, tools=list(par_nom.values()),
         automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
@@ -291,7 +324,7 @@ def _agent_google(question, par_nom, system, max_tours, temperature):
     appels = []
     for tour in range(1, max_tours + 1):
         debut = time.perf_counter()
-        r = client.models.generate_content(model=modele(), contents=contents, config=config)
+        r, _ = _generate_google(contents, config)
         u = r.usage_metadata
         _journaliser(debut, getattr(u, "prompt_token_count", None), getattr(u, "candidates_token_count", None), ok=True)
         if not r.function_calls:
