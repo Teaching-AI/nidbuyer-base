@@ -1,11 +1,10 @@
 """
 M1 — Premier agent NidBuyer.
 
-    pip install -r exercices/requirements-tp.txt
-    export LLM_PROVIDER=gemini GEMINI_API_KEY=...     # cle gratuite : https://aistudio.google.com
-    python -m exercices.m1_agent "Je cherche un T3 au Mourillon sous 250 000 euros"
+    cp .env.example .env      # puis coller la cle (gratuite : https://aistudio.google.com) dans .env
+    uv run python -m exercices.m1_agent "Je cherche un T3 au Mourillon sous 250 000 euros"
 
-Sans cle ni reseau : LLM_PROVIDER=fake (l'agent appelle chaque outil une fois, pour voir la mecanique).
+Sans cle ni reseau : LLM_PROVIDER=fake dans .env (l'agent appelle chaque outil une fois, pour voir la mecanique).
 """
 import json
 import sys

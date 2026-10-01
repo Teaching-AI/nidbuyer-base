@@ -4,7 +4,7 @@ Acces unique aux LLM. FOURNI PAR L'ENSEIGNANT : a utiliser, pas a reecrire.
 Tout le reste du code appelle `generer()`. Le fournisseur se choisit par variable
 d'environnement, sans toucher au code metier :
 
-    LLM_PROVIDER=gemini   Gemini via une cle d'API AI Studio (P1, avant le module GCP)
+    LLM_PROVIDER=gemini   Gemini via une cle d'API AI Studio (P1, avant le module GCP) : defaut
     LLM_PROVIDER=vertex   Gemini via Vertex AI, sans cle (P2, deploye sur Cloud Run)
     LLM_PROVIDER=ollama   modele ouvert servi en local par Ollama (P2, version interne)
     LLM_PROVIDER=fake     reponses deterministes, sans reseau (tests, CI)
@@ -14,6 +14,10 @@ Variables :
     GEMINI_API_KEY        (gemini)
     GOOGLE_CLOUD_PROJECT, GOOGLE_CLOUD_LOCATION   (vertex)
     OLLAMA_URL            defaut http://localhost:11434 (ollama)
+
+Les variables peuvent aussi etre mises dans un fichier .env a la racine du repo
+(copie de .env.example) : il est lu automatiquement. Une variable deja exportee
+dans le terminal reste prioritaire.
 
 Exemple :
     from backend.llm import generer
@@ -33,6 +37,12 @@ from typing import Literal, TypeVar, get_args, get_origin
 import requests
 from pydantic import BaseModel, ValidationError
 
+try:  # .env a la racine du repo, s'il existe (n'ecrase pas les variables deja exportees)
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 logger = logging.getLogger(__name__)
 T = TypeVar("T", bound=BaseModel)
 
@@ -47,7 +57,7 @@ class LLMError(RuntimeError):
 
 
 def provider() -> str:
-    return os.environ.get("LLM_PROVIDER", "vertex").lower()
+    return os.environ.get("LLM_PROVIDER", "gemini").lower()
 
 
 def modele() -> str:
@@ -135,7 +145,11 @@ def _client_google():
     from google import genai
     if _vertex_client is None:
         if provider() == "gemini":
-            _vertex_client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+            cle = os.environ.get("GEMINI_API_KEY", "").strip()
+            if not cle or cle == "collez-votre-cle-ici":
+                raise LLMError("GEMINI_API_KEY absente : collez votre cle AI Studio dans le fichier .env "
+                               "(cp .env.example .env), ou LLM_PROVIDER=fake pour travailler sans cle.")
+            _vertex_client = genai.Client(api_key=cle)
         else:
             _vertex_client = genai.Client(
                 vertexai=True,

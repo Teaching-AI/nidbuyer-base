@@ -4,8 +4,7 @@ M1 — Demo MCP : les outils NidBuyer exposes comme serveur MCP.
 Le meme code que backend/outils.py, sans rien reecrire : tout client MCP
 (Claude Desktop, un IDE, un assistant d'entreprise) peut alors les appeler.
 
-    pip install mcp
-    npx @modelcontextprotocol/inspector python -m exercices.m1_mcp   # depuis la racine du repo
+    npx @modelcontextprotocol/inspector uv run python -m exercices.m1_mcp   # depuis la racine du repo
 
 L'inspecteur liste les outils (nom, description = docstring, parametres types)
 et permet de les appeler a la main : c'est exactement ce que voit un modele.

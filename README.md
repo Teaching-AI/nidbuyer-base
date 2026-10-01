@@ -16,23 +16,16 @@ Cette année, on en fait un **agent** : un assistant qui choisit lui-même ses o
 ```bash
 git clone <votre copie de ce repo>
 cd nidbuyer-base
-uv venv --python 3.12                                  # telecharge Python 3.12 s'il manque
-source .venv/bin/activate                              # Windows : .venv\Scripts\activate
-uv pip install -r exercices/requirements-tp.txt
-
-export LLM_PROVIDER=gemini
-export GEMINI_API_KEY=<votre clé gratuite : https://aistudio.google.com>
-export LLM_MODEL=<modèle donné en cours>
-
-python -m exercices.m1_agent "Je cherche un T3 au Mourillon sous 250 000 euros, c'est une bonne affaire ?"
+cp .env.example .env            # Windows : copy .env.example .env
+# ouvrir .env et coller votre clé AI Studio (gratuite : https://aistudio.google.com)
+uv run python -m exercices.m1_agent "Je cherche un T3 au Mourillon sous 250 000 euros, c'est une bonne affaire ?"
 ```
 
-Windows (PowerShell) : `$env:GEMINI_API_KEY="..."` au lieu de `export GEMINI_API_KEY=...`.
-
+`uv run` installe Python et les dépendances au premier lancement (voir `pyproject.toml`).
 Installer uv : https://docs.astral.sh/uv/ (Mac/Linux : `curl -LsSf https://astral.sh/uv/install.sh | sh`).
-Sans uv : `python -m venv .venv` puis `pip install -r exercices/requirements-tp.txt` (Python 3.10+).
+Sans uv : `python -m venv .venv`, l'activer, `pip install -r exercices/requirements-tp.txt` (Python 3.10+).
 
-Sans clé ni réseau : `export LLM_PROVIDER=fake` pour voir la mécanique (réponses factices).
+Sans clé ni réseau : `LLM_PROVIDER=fake` dans `.env` pour voir la mécanique (réponses factices).
 
 > **Votre clé d'API est un secret.** Jamais dans le code, jamais dans un commit, jamais sur
 > une capture d'écran. Le fichier `.env` est ignoré par git : c'est là qu'elle va.

@@ -9,25 +9,28 @@ Créez votre copie : sur https://github.com/Teaching-AI/nidbuyer-base, **Use thi
 ```bash
 git clone <votre copie de nidbuyer-base>
 cd nidbuyer-base
-uv venv --python 3.12                  # télécharge Python 3.12 s'il manque
-source .venv/bin/activate              # Windows : .venv\Scripts\activate
-uv pip install -r exercices/requirements-tp.txt
-
-export LLM_PROVIDER=gemini
-export GEMINI_API_KEY=<votre clé AI Studio>
-export LLM_MODEL=<modèle donné par l'enseignant>
+cp .env.example .env                   # Windows : copy .env.example .env
 ```
 
-Windows (PowerShell) : remplacez chaque `export NOM=valeur` par `$env:NOM="valeur"`.
+Ouvrez `.env` dans votre éditeur et remplacez `collez-votre-cle-ici` par votre clé AI Studio.
+Si l'enseignant donne un autre modèle, changez aussi `LLM_MODEL`. Puis :
+
+```bash
+uv run python -m exercices.m1_agent "Avec 250 000 euros empruntés sur 25 ans à 3,4 %, je paie combien par mois ?"
+```
+
+Le premier lancement installe Python et les dépendances (une minute), les suivants sont immédiats.
+Attendu : un appel à `simuler_pret`, une réponse avec 1 238,19 €, et le nombre de tokens.
 
 Pas de uv ? Installez-le (Mac/Linux : `curl -LsSf https://astral.sh/uv/install.sh | sh` ;
 Windows : `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`),
-ou en repli : `python -m venv .venv` puis `pip install -r exercices/requirements-tp.txt` (Python 3.10 ou plus).
+puis ouvrez un nouveau terminal. En dernier recours : `python -m venv .venv`, activez-le,
+`pip install -r exercices/requirements-tp.txt`, et lancez sans `uv run` (Python 3.10 ou plus).
 
-Sans clé ou sans réseau : `export LLM_PROVIDER=fake`. L'agent appelle alors chaque outil une
+Sans clé ou sans réseau : mettez `LLM_PROVIDER=fake` dans `.env`. L'agent appelle alors chaque outil une
 fois avec des arguments bidons : utile pour voir la mécanique, pas pour juger la qualité.
 
-> Votre clé d'API est un secret. Pas dans le code, pas dans un commit, pas sur une capture d'écran.
+> Votre clé d'API est un secret. Elle va dans `.env` (ignoré par git), jamais dans le code, un commit ou une capture d'écran.
 
 ## Étape 1 — Lire avant de lancer (15 min)
 
@@ -39,7 +42,7 @@ Ouvrez `backend/outils.py` et `exercices/m1_agent.py`. Répondez en binôme :
 ## Étape 2 — Lancer (20 min)
 
 ```bash
-python -m exercices.m1_agent "Je cherche un T3 au Mourillon sous 250 000 euros. C'est une bonne affaire ?"
+uv run python -m exercices.m1_agent "Je cherche un T3 au Mourillon sous 250 000 euros. C'est une bonne affaire ?"
 ```
 
 Lisez la trace : quels outils, dans quel ordre, avec quels arguments ? Puis essayez :
