@@ -10,7 +10,7 @@ d'environnement, sans toucher au code metier :
     LLM_PROVIDER=fake     reponses deterministes, sans reseau (tests, CI)
 
 Variables :
-    LLM_MODEL             ex. gemini-3.5-flash (gemini, vertex), qwen3:4b (ollama)
+    LLM_MODEL             ex. gemini-3.5-flash-lite (gemini), gemini-3.5-flash (vertex), qwen3:4b (ollama)
     LLM_MODEL_SECOURS     modele essaye si LLM_MODEL est sature (gemini, vertex)
     GEMINI_API_KEY        (gemini)
     GOOGLE_CLOUD_PROJECT, GOOGLE_CLOUD_LOCATION   (vertex)
@@ -62,7 +62,7 @@ def provider() -> str:
 
 
 def modele() -> str:
-    defaut = {"gemini": "gemini-3.5-flash", "vertex": "gemini-3.5-flash", "ollama": "qwen3:4b", "fake": "fake"}
+    defaut = {"gemini": "gemini-3.5-flash-lite", "vertex": "gemini-3.5-flash", "ollama": "qwen3:4b", "fake": "fake"}
     return os.environ.get("LLM_MODEL", defaut.get(provider(), ""))
 
 
@@ -189,7 +189,7 @@ def _generate_google(contents, config):
         logger.warning("Modele %s indisponible (%s), essai du suivant", nom, str(derniere)[:120])
     raise LLMError(
         f"Gemini ne repond pas ({', '.join(dict.fromkeys(candidats))}) : {str(derniere)[:200]}. "
-        "Reessayez dans une minute, ou changez LLM_MODEL dans .env (ex. gemini-flash-latest)."
+        "Reessayez dans une minute, ou changez LLM_MODEL dans .env (ex. gemini-flash-lite-latest)."
     ) from derniere
 
 
