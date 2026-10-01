@@ -100,7 +100,7 @@ Pour chaque fonction de NidBuyer, en groupe : workflow ou agent, pourquoi, et co
 
 ## Supports
 
-- Slides : [M1-agents-et-outils.pdf](M1-agents-et-outils.pdf) (après la séance)
+- Slides : [M1-agents-et-outils.pdf](M1-agents-et-outils.pdf)
 - [TP 1 — Premier agent NidBuyer](TP1-premier-agent.md)
 - [TP 2 — Casser l'agent](TP2-casser-l-agent.md)
 - Code : ce repo, dossier [`exercices/`](../../exercices/) et outils dans [`backend/outils.py`](../../backend/outils.py)
