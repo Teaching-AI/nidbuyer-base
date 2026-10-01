@@ -6,6 +6,9 @@ Le meme code que backend/outils.py, sans rien reecrire : tout client MCP
 
     npx @modelcontextprotocol/inspector uv run python -m exercices.m1_mcp   # depuis la racine du repo
 
+Sans Node (ou si npx n'a pas de reseau) : uv run python -m exercices.m1_mcp_client
+fait la meme chose dans le terminal.
+
 L'inspecteur liste les outils (nom, description = docstring, parametres types)
 et permet de les appeler a la main : c'est exactement ce que voit un modele.
 """
