@@ -1,6 +1,6 @@
 # TP 2 — Red team inter-groupes
 
-**Durée : 1h45** (14h15 → 16h00) · les 4 groupes s'attaquent en rotation :
+**Durée : 1h30** (14h30 → 16h00) · les 4 groupes s'attaquent en rotation :
 **1 attaque 2, 2 attaque 3, 3 attaque 4, 4 attaque 1**
 
 ## Avant de commencer (5 min) — donner l'accès
@@ -17,7 +17,7 @@ cp ../<votre repo>/.env .env        # votre clé, sur votre machine seulement
 
 Vous lancez l'agent du groupe cible **avec votre propre clé**. Vous ne poussez rien sur leur repo.
 
-## Étape 1 — Préparer l'attaque (30 min)
+## Étape 1 — Préparer l'attaque (25 min)
 
 Lisez le code du groupe cible : son prompt système (`SYSTEM` dans `exercices/m1_agent.py`), ses outils,
 les corrections du TP 1. Écrivez **5 attaques** sous forme de scénarios, dans
@@ -59,7 +59,7 @@ ses 5 attaques, le taux de réussite, l'attaque la plus grave et pourquoi elle e
 
 Puis poussez `attaques_groupe<N>.json` dans votre repo et envoyez le lien au groupe cible dans le canal Teams.
 
-## Étape 4 — Se défendre (30 min)
+## Étape 4 — Se défendre (20 min)
 
 Chaque groupe récupère les attaques qui l'ont visé, les copie dans son propre `scenarios_groupe.json`
 (elles n'en sortiront plus), et corrige. Garde-fous possibles : voir le tableau du cours.
