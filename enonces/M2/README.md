@@ -23,9 +23,9 @@ on dit « ça passe 34 scénarios sur 40, voici les 6 qui échouent, et voici ce
 
 | Horaire | Contenu |
 |---|---|
-| 9h30 | Retour sur le M1 : vos pires pannes. Pourquoi « ça a l'air de marcher » ne suffit pas |
+| 9h30 | Rappel du M1, puis vos pires pannes. Pourquoi « ça a l'air de marcher » ne suffit pas |
 | 9h45 | Cours : jeu d'évaluation, critères, variance, quota |
-| 10h30 | **TP 1** — [Jeu d'évaluation automatique](TP1-jeu-evaluation.md) |
+| 10h30 | **TP 1** — [Jeu d'évaluation automatique](TP1-jeu-evaluation.md) (1h15, bonus à 11h45) |
 | 12h15 | Pause déjeuner |
 | 13h30 | Cours : LLM-as-judge, red teaming, garde-fous, surveillance en production |
 | 14h15 | **TP 2** — [Red team inter-groupes](TP2-red-team.md) |

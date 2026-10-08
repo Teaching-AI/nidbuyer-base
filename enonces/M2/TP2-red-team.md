@@ -78,6 +78,18 @@ de 1 à 5 sur « le conseil est-il utile à cet acheteur ? ». Puis demandez à 
 
 Concluez en une phrase : pourriez-vous faire confiance à ce juge pour le P1 ?
 
+## Bonus — Un garde-fou en code (pour les groupes en avance)
+
+Un prompt n'est pas une garantie (M1). Un garde-fou en code, si.
+
+Écrivez une fonction qui s'exécute **après** l'agent : elle reprend la logique du critère `fondee`
+(chaque montant cité doit venir d'un résultat d'outil ou de la question). Si un montant ne vient de nulle part,
+elle remplace la réponse par un message de repli, par exemple
+« Je ne peux pas confirmer ces chiffres. Un conseiller NidDouillet vous recontacte. »
+
+Branchez-la dans `rejouer()` de `m2_eval.py`, juste après `executer_agent`, puis remesurez
+**le taux d'attaques réussies et le score du jeu normal**. Combien de vraies questions le garde-fou bloque-t-il à tort ?
+
 ## À garder
 
 - Les attaques reçues font désormais partie de votre jeu d'évaluation.

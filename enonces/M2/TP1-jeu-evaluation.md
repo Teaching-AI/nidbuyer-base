@@ -1,6 +1,6 @@
 # TP 1 — Jeu d'évaluation automatique
 
-**Durée : 1h45** (10h30 → 12h15) · en groupe projet (4) · salle Teams de votre groupe
+**Durée : 1h15 + 30 min de bonus** (10h30 → 11h45, bonus jusqu'à 12h15) · en groupe projet (4) · salle Teams de votre groupe
 
 ## Avant de commencer (5 min)
 
@@ -30,7 +30,7 @@ LLM_MODEL_SECOURS=
 > complet que pour mesurer. Répartissez les lancements entre les 4 clés du groupe.
 > Erreur 429 = quota atteint : attendez une minute, ou passez la main à un autre membre.
 
-## Étape 1 — Lancer le harnais (15 min)
+## Étape 1 — Lancer le harnais (10 min)
 
 ```bash
 uv run python -m exercices.m2_eval
@@ -51,7 +51,7 @@ Questions :
    Quelle réponse fausse passerait quand même ? (indice : quels nombres sont vérifiés, lesquels ne le sont pas ?)
 3. Et le critère `refus` ? Trouvez une réponse qui le passe alors qu'elle ne refuse rien.
 
-## Étape 2 — Votre jeu d'évaluation (45 min)
+## Étape 2 — Votre jeu d'évaluation (30 min)
 
 Créez `exercices/scenarios_groupe.json`, au même format que `scenarios.json` (le format est décrit
 en haut de `m2_eval.py`). Point de départ : vos 12 questions du TP 2 du M1.
@@ -75,7 +75,7 @@ uv run python -c "from backend.outils import ecart_au_marche; print(ecart_au_mar
 Faites relire chaque scénario par un autre membre du groupe : si vous n'êtes pas d'accord sur ce
 qui est attendu, réécrivez le scénario.
 
-## Étape 3 — Mesurer, avec la variance (20 min)
+## Étape 3 — Mesurer, avec la variance (15 min)
 
 ```bash
 uv run python -m exercices.m2_eval --scenarios exercices/scenarios_groupe.json --repetitions 3 --sortie eval_resultats_v1.json
@@ -94,13 +94,27 @@ Notez :
 Un scénario **instable** passe parfois, échoue parfois. Avant de conclure « le modèle est aléatoire »,
 vérifiez que le modèle était bien le même à chaque fois (dernière ligne de la sortie) : c'est souvent là que ça change.
 
-## Étape 4 — Corriger sans tricher (25 min)
+## Étape 4 — Corriger sans tricher (20 min)
 
 Choisissez les 2 critères les plus souvent en échec. Corrigez l'agent (docstring, prompt système,
 outil), **pas le scénario**, sauf si vous démontrez que le scénario était faux.
 
 Relancez **tout le jeu**, avec 3 répétitions (`--sortie eval_resultats_v2.json`). Le score monte-t-il ?
 Un scénario qui passait échoue-t-il maintenant ? C'est une **régression** : c'est exactement ce que ce harnais sert à attraper.
+
+## Bonus — Améliorer le harnais (30 min, à partir de 11h45)
+
+Pour les groupes qui ont fini. Le harnais est du code : il a des trous, comme l'agent.
+
+**A. Boucher le trou de `fondee`** (15 min). Aujourd'hui, `fondee` ne vérifie que les montants ≥ 1 000.
+Un « 30 % sous le marché » inventé passe. Modifiez `verifier()` pour que tout nombre suivi de `%`
+dans la réponse vienne aussi d'un résultat d'outil ou de la question. Testez sur un scénario
+avec `"annonce_piegee": true` : le critère doit maintenant échouer si l'agent recopie le « 30 % ».
+Attention aux faux positifs : « 3,4 % » vient de la question, il doit passer.
+
+**B. Mesurer ce que ça coûte** (15 min). `executer_agent` renvoie `tokens_entree` et `tokens_sortie`.
+Ajoutez un critère `"tokens_max"` dans `verifier()`, et affichez le total de tokens à côté du score.
+Vous pourrez alors dire la phrase complète : « ça passe 17 sur 20, voici les 3 qui échouent, et voici ce que ça coûte ».
 
 ## À garder
 
