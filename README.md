@@ -32,6 +32,8 @@ Sans clé ni réseau : `LLM_PROVIDER=fake` dans `.env` pour voir la mécanique (
 
 Énoncés des TP : dossier [`enonces/M1/`](enonces/M1/) ([TP 1 « Premier agent »](enonces/M1/TP1-premier-agent.md), [TP 2 « Casser l'agent »](enonces/M1/TP2-casser-l-agent.md)).
 
+M2 (9 oct.) : [`enonces/M2/`](enonces/M2/) ([TP 1 « Jeu d'évaluation »](enonces/M2/TP1-jeu-evaluation.md), [TP 2 « Red team »](enonces/M2/TP2-red-team.md)). Harnais : `uv run python -m exercices.m2_eval`.
+
 ---
 
 ## Ce qu'il y a dedans
