@@ -159,7 +159,7 @@ Une trace qui échoue devient un scénario. Outils : Langfuse, conventions OpenT
 
 ## Supports
 
-- Slides : PDF dans ce dossier après la séance
+- Slides : [`M2-evaluer-et-surveiller.pdf`](M2-evaluer-et-surveiller.pdf)
 - [TP 1 — Jeu d'évaluation automatique](TP1-jeu-evaluation.md)
 - [TP 2 — Red team inter-groupes](TP2-red-team.md)
 - Code : `exercices/m2_eval.py` et `scenarios.json` (lancer avec `uv run python -m exercices.m2_eval`)
