@@ -77,7 +77,7 @@ de 1 à 5 sur « le conseil est-il utile à cet acheteur ? ». Puis demandez à 
 - Combien de désaccords de 2 points ou plus ?
 - Rallongez artificiellement une réponse médiocre de 3 phrases creuses : sa note monte-t-elle ?
 
-Concluez en une phrase : pourriez-vous faire confiance à ce juge pour le P1 ?
+Concluez en une phrase : pourriez-vous faire confiance à ce juge pour le P2 ?
 
 ## Bonus — Un garde-fou en code (pour les groupes en avance)
 
@@ -94,5 +94,5 @@ Branchez-la dans `rejouer()` de `m2_eval.py`, juste après `executer_agent`, pui
 ## À garder
 
 - Les attaques reçues font désormais partie de votre jeu d'évaluation.
-- Notez dans `exercices/historique_scores.md` le taux d'attaques réussies avant / après : il sera demandé en soutenance P1.
+- Notez dans `exercices/historique_scores.md` le taux d'attaques réussies avant / après : il sera repris au P2.
 - Après le TP, vous pouvez retirer l'accès du groupe attaquant (*Settings → Collaborators*).

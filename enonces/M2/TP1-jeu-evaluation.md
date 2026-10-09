@@ -121,6 +121,6 @@ Vous pourrez alors dire la phrase complète : « ça passe 17 sur 20, voici les 
 
 ## À garder
 
-- Commitez `exercices/scenarios_groupe.json` et vos corrections : c'est le premier jet du jeu d'évaluation noté en P1.
+- Commitez `exercices/scenarios_groupe.json` et vos corrections : c'est le premier jet du jeu d'évaluation de NidBuyer, repris au P2.
 - Créez `exercices/historique_scores.md` et notez-y chaque mesure (date, modèle, score, ce qui a changé).
   Le jury demandera comment le score a évolué. Les fichiers `eval_resultats*.json` ne sont pas versionnés.

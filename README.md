@@ -82,6 +82,6 @@ streamlit run frontend/app.py         # → http://localhost:8501
 |---|---|
 | M1 (2 oct.) | Premier agent, pannes d'un agent |
 | M2 (9 oct.) | Jeu d'évaluation automatique de l'agent |
-| P1 (30 oct. → 27 nov.) | NidBuyer agent sur vraies données, évalué |
-| P2 (15 janv. → 11 fév.) | Déployé sur Google Cloud et en version interne, comparés |
-| P3 (19 fév. → 19 mars) | Audité par un autre groupe, mis en conformité |
+| P1 (30 oct. → 27 nov.) | Compétition Kaggle *Gemma 4 Developer Agent* (agent de code, évalué par Google) |
+| P2 (15 janv. → 11 fév.) | NidBuyer agent sur vraies données, évalué, déployé sur Google Cloud |
+| P3 (19 fév. → 19 mars) | À venir |

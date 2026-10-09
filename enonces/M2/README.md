@@ -31,8 +31,8 @@ on dit « ça passe 34 scénarios sur 40, voici les 6 qui échouent, et voici ce
 | 13h30 | Cours : cas réels, LLM-as-judge, red teaming, injection, garde-fous, le harnais, contexte et sous-agents, surveillance en production (1h15) |
 | 14h45 | **TP 2** — [Red team inter-groupes](TP2-red-team.md) (1h15) |
 | 16h00 | Pause |
-| 16h15 | Ce que P1 attend (20 min), puis QCM (10 min) |
-| 16h45 | **Lancement du défi Kaggle** Gemma 4 Developer Agent, en binômes, jusqu'à 17h30 |
+| 16h15 | Les projets de l'année : P1 = compétition Kaggle, P2 = NidBuyer (20 min), puis QCM noté (10 min) |
+| 16h45 | **Lancement du Projet 1** : compétition Kaggle Gemma 4 Developer Agent, en binômes, jusqu'à 17h30 |
 
 ## Contenu du cours
 
@@ -157,7 +157,7 @@ Une trace qui échoue devient un scénario. Outils : Langfuse, conventions OpenT
 
 **p50 / p95** : p50 est la médiane. p95 = 95 % des réponses arrivent en moins de ce temps, les 5 % les plus lentes au-delà.
 
-### 8. Le défi Kaggle
+### 8. Le Projet 1 : la compétition Kaggle
 
 Google DeepMind, *Gemma 4 Developer Agent Competition* : un agent (Gemma 4 31B, sans internet) corrige de vrais bugs
 dans des dépôts Python ; le score est la part de bugs dont les tests passent, comme SWE-bench (Jimenez et al., 2023).
