@@ -32,6 +32,7 @@ import base64
 import json
 import logging
 import os
+import re
 import time
 from typing import Literal, TypeVar, get_args, get_origin
 
@@ -160,11 +161,25 @@ def _client_google():
     return _vertex_client
 
 
+def _delai_quota(erreur) -> float | None:
+    """
+    Sur un 429, Gemini dit combien attendre (« retryDelay »: « 23s »). Retourne ce delai en secondes,
+    ou None si c'est le quota du JOUR qui est epuise (attendre ne sert alors a rien).
+    """
+    texte = str(erreur)
+    if "PerDay" in texte or "per_day" in texte.lower():
+        return None
+    m = re.search(r"retryDelay['\"]?\s*[:=]\s*['\"]?(\d+(?:\.\d+)?)s", texte) \
+        or re.search(r"retry in (\d+(?:\.\d+)?)\s*s", texte, re.IGNORECASE)
+    return float(m.group(1)) if m else 20.0
+
+
 def _generate_google(contents, config):
     """
-    Appel Gemini tolerant aux pannes passageres : si le modele est sature (503), hors quota
-    (429) ou si la connexion coupe, on reessaie une fois le meme modele apres 2 s, puis
-    LLM_MODEL_SECOURS. Retourne (reponse, modele utilise).
+    Appel Gemini tolerant aux pannes passageres. Retourne (reponse, modele utilise).
+    - 429 quota PAR MINUTE : on attend le delai indique par Gemini, puis on relance (3 fois max).
+    - 429 quota du JOUR : inutile d'attendre, on passe au modele suivant.
+    - 503 sature ou coupure reseau : on reessaie une fois apres 2 s, puis LLM_MODEL_SECOURS.
     """
     import httpx
     from google.genai import errors
@@ -174,22 +189,34 @@ def _generate_google(contents, config):
     secours = os.environ.get("LLM_MODEL_SECOURS", "").strip()
     if secours and secours != modele():
         candidats.append(secours)
+    attente_max = float(os.environ.get("LLM_ATTENTE_QUOTA_MAX", "65"))
     derniere = None
     for i, nom in enumerate(candidats):
         if i == 1:
             time.sleep(2)
-        try:
-            return client.models.generate_content(model=nom, contents=contents, config=config), nom
-        except (errors.ServerError, httpx.TransportError) as e:
-            derniere = e
-        except errors.ClientError as e:
-            if getattr(e, "code", None) != 429:
-                raise
-            derniere = e
+        attentes = 0
+        while True:
+            try:
+                return client.models.generate_content(model=nom, contents=contents, config=config), nom
+            except (errors.ServerError, httpx.TransportError) as e:
+                derniere = e
+                break
+            except errors.ClientError as e:
+                if getattr(e, "code", None) != 429:
+                    raise
+                derniere = e
+                delai = _delai_quota(e)
+                if delai is None or attentes >= 3 or delai > attente_max:
+                    break
+                attentes += 1
+                logger.warning("Quota par minute atteint sur %s : attente %.0f s (essai %d/3)", nom, delai + 1, attentes)
+                time.sleep(delai + 1)
         logger.warning("Modele %s indisponible (%s), essai du suivant", nom, str(derniere)[:120])
+    jour = derniere is not None and _delai_quota(derniere) is None
+    conseil = ("Quota du jour epuise sur cette cle : utilisez la cle d'un autre membre du groupe."
+               if jour else "Reessayez dans une minute, ou changez LLM_MODEL dans .env (ex. gemini-flash-lite-latest).")
     raise LLMError(
-        f"Gemini ne repond pas ({', '.join(dict.fromkeys(candidats))}) : {str(derniere)[:200]}. "
-        "Reessayez dans une minute, ou changez LLM_MODEL dans .env (ex. gemini-flash-lite-latest)."
+        f"Gemini ne repond pas ({', '.join(dict.fromkeys(candidats))}) : {str(derniere)[:200]}. {conseil}"
     ) from derniere
 
 

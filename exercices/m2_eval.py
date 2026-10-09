@@ -7,6 +7,10 @@ reponse), et donne un score. C'est le meme harnais que celui des tests du P1.
     python -m exercices.m2_eval                              # exercices/scenarios.json
     python -m exercices.m2_eval --scenarios mes_scenarios.json --repetitions 3
     python -m exercices.m2_eval --id sc-03                   # un seul scenario, trace detaillee
+    python -m exercices.m2_eval --pause 4                    # espacer les appels (quota gratuit)
+
+Quota gratuit : sur une erreur 429 « par minute », llm.py attend le delai indique par Gemini
+puis relance tout seul. Un jeu complet est donc plus lent, mais ne casse pas.
 
 Format d'un scenario (toutes les cles de "attendu" sont facultatives) :
 {
@@ -134,6 +138,8 @@ def main():
     parser.add_argument("--repetitions", type=int, default=1, help="rejouer chaque scenario N fois")
     parser.add_argument("--id", help="un seul scenario, avec la trace complete")
     parser.add_argument("--sortie", default="eval_resultats.json")
+    parser.add_argument("--pause", type=float, default=0,
+                        help="secondes d'attente entre deux scenarios (quota gratuit : essayez 4)")
     args = parser.parse_args()
 
     scenarios = json.loads(Path(args.scenarios).read_text(encoding="utf-8"))
@@ -145,6 +151,8 @@ def main():
     lignes, durees = [], []
     for sc in scenarios:
         for rep in range(args.repetitions):
+            if args.pause and lignes:
+                time.sleep(args.pause)
             res = rejouer(sc)
             v = verifier(sc, res)
             durees.append(res["duree_s"])

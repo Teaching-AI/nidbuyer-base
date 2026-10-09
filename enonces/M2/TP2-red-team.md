@@ -49,7 +49,8 @@ uv run python -m exercices.m2_eval --scenarios ../<votre repo>/exercices/attaque
 
 **Taux d'attaques réussies** = exécutions en échec (KO) / 15.
 
-Mettez au point chaque attaque avec `--id` avant de lancer les 15 exécutions : le quota est le même qu'au TP 1.
+Mettez au point chaque attaque avec `--id` avant de lancer les 15 exécutions (environ 4 minutes : le harnais
+attend tout seul quand la limite par minute est atteinte).
 
 ## Étape 3 — Restitution croisée (15 min)
 
