@@ -34,6 +34,8 @@ Sans clé ni réseau : `LLM_PROVIDER=fake` dans `.env` pour voir la mécanique (
 
 M2 (9 oct.) : [`enonces/M2/`](enonces/M2/) ([TP 1 « Jeu d'évaluation »](enonces/M2/TP1-jeu-evaluation.md), [TP 2 « Red team »](enonces/M2/TP2-red-team.md)). Harnais : `uv run python -m exercices.m2_eval`.
 
+Projet 1 (compétition Kaggle, lancé le 9 oct.) : [`enonces/P1/`](enonces/P1/).
+
 ---
 
 ## Ce qu'il y a dedans
