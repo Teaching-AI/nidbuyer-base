@@ -70,7 +70,8 @@ Le critère **« réponse fondée »** est le plus utile : il attrape les chiffr
 
 ### 3. La variance : même question, autre réponse
 
-À température 0, un agent donne le plus souvent la même trace. Ce qui fait varier les résultats :
+À température 0, un agent donne le plus souvent la même trace, mais pas toujours : les serveurs regroupent
+les requêtes et les arrondis de calcul peuvent faire basculer un mot (He, 2025). Ce qui fait varier les résultats :
 un **changement de modèle** (le modèle de secours après une erreur 503, une mise à jour chez Google),
 un changement de données, ou une consigne ambiguë qui laisse le choix entre deux chemins.
 On rejoue chaque scénario **3 à 5 fois**. Un scénario qui passe 2 fois sur 3 est un **scénario instable** :
@@ -169,6 +170,7 @@ Une trace qui échoue devient un scénario. Outils : Langfuse, conventions OpenT
 - [Anthropic — Créer des évaluations solides](https://docs.claude.com/en/docs/test-and-evaluate/develop-tests)
 - [Yao et al. 2024, *τ-bench*](https://arxiv.org/abs/2406.12045) : agents avec outils, la mesure pass^k
 - [Miller 2024, *Adding Error Bars to Evals*](https://arxiv.org/abs/2411.00640) : intervalles de confiance, comparaison appariée
+- [Horace He 2025, *Defeating Nondeterminism in LLM Inference*](https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/) : pourquoi température 0 ne suffit pas
 - [Chen, Zaharia, Zou 2023, *How is ChatGPT's behavior changing over time?*](https://arxiv.org/abs/2307.09009) : la dérive d'un modèle au même nom
 
 **LLM-as-judge**
