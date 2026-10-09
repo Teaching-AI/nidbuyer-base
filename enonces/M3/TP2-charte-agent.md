@@ -66,7 +66,7 @@ Choisissez **une** règle de votre charte qui peut se traduire dans votre agent 
 - « budget plafonné » → un réglage de `eval_config.yaml`, dans la limite des 12 h au total.
 
 Écrivez-la comme la **prochaine entrée de votre `journal.md`**, au format habituel (hypothèse, changement,
-résultat attendu, ce qui la réfuterait). Ne soumettez pas aujourd'hui : la soumission du jour a déjà servi.
+résultat attendu, ce qui la réfuterait). Ne soumettez pas pendant le TP : votre soumission du matin est sans doute encore en attente d'évaluation.
 Vous la testerez à votre prochaine soumission.
 
 ## Étape 4 — Pousser (5 min)

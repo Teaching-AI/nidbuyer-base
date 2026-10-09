@@ -42,7 +42,8 @@ appeler le juriste ou le DPO, et surtout à relier chaque règle à une **preuve
 Connectez-vous à Teams à 9h30, en salle de groupe. Les consignes sont ici ; les questions vont dans le canal.
 
 1. **Projet 1 (jusqu'à 10h15 environ)** — c'est l'échéance du jour : **binôme inscrit sur Kaggle et première
-   soumission valide** (2 + 2 points). Suivez la procédure de soumission postée dans le canal Teams.
+   soumission valide** (2 + 2 points). Suivez [`enonces/P1/SOUMETTRE.md`](../P1/SOUMETTRE.md) et sa vidéo (lien dans le canal Teams).
+   Créez aussi le repo privé du journal de votre binôme (étape 7 de la procédure).
    Écrivez l'entrée correspondante dans votre `journal.md` (hypothèse, changement, résultat, conclusion).
    Une seule soumission par jour et par équipe : ne la gaspillez pas.
 2. **TP 0 — Carte des données (45 min)** — [énoncé](TP0-carte-donnees.md). Il sert de point de départ

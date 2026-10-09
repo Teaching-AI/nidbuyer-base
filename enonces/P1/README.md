@@ -42,11 +42,14 @@ Ce qui est imposé : le modèle (Gemma 4 31B), les outils (`read_file`, `edit_fi
 
 ## Démarrer (9 octobre, 16h45)
 
+> **Procédure détaillée et erreurs fréquentes : [`SOUMETTRE.md`](SOUMETTRE.md).** À lire avant la première soumission.
+
 1. Créez un compte Kaggle et **vérifiez votre téléphone** (sans ça, pas d'accès aux GPU).
 2. Rejoignez la compétition (*Join Competition*) et acceptez le règlement.
 3. Formez votre **binôme** dans votre groupe projet : l'un crée l'équipe (onglet *Team*), l'autre la rejoint.
 4. Dans l'onglet *Code*, ouvrez le notebook **« Getting Started - Gemma 4 Developer Agent »** et cliquez sur *Copy & Edit*.
-5. Faites **un seul changement** (votre première hypothèse), puis *Save Version* et soumettez le `submission.zip` produit.
+5. Faites **un seul changement** (votre première hypothèse), puis *Save Version* et soumettez le `submission.zip` produit
+   depuis le bouton **Submit Prediction** de la page de la compétition (détails dans [`SOUMETTRE.md`](SOUMETTRE.md)).
 
 Le kit de départ ne corrige aucun bug : son budget d'une minute par bug coupe l'agent avant qu'il
 ait modifié quoi que ce soit. Vous partez donc de zéro, comme tout le monde.
@@ -72,7 +75,8 @@ Lisez aussi la section 10 du `HARNESS_README.md` (onglet *Data*) : ce sont les p
 
 ## Le journal d'expériences
 
-Un fichier `journal.md` par équipe, une entrée par soumission, **signée** par la personne qui l'a menée :
+Un fichier `journal.md` par équipe, dans un **repo GitHub privé du binôme** (`p1-journal-G<n>-<A|B>`, l'enseignant invité),
+une entrée par soumission, **signée** par la personne qui l'a menée :
 
 ```markdown
 ## Expérience 3 — 14 octobre — menée par : Prénom N.
