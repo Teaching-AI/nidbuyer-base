@@ -183,7 +183,7 @@ Une trace qui échoue devient un scénario. Outils : Langfuse, conventions OpenT
 - [OWASP — Top 10 pour les applications LLM](https://genai.owasp.org/llm-top-10/)
 
 **Cas réels**
-- Moffatt c. Air Canada, Civil Resolution Tribunal de Colombie-Britannique, 2024 CRT 149 (février 2024)
+- Moffatt c. Air Canada, Civil Resolution Tribunal de Colombie-Britannique, 2024 BCCRT 149 (février 2024)
 
 ---
 
