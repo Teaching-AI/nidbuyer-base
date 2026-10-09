@@ -165,12 +165,25 @@ Une trace qui échoue devient un scénario. Outils : Langfuse, conventions OpenT
 
 ## Ressources
 
-- [OWASP — Top 10 pour les applications LLM](https://genai.owasp.org/llm-top-10/)
+**Évaluer**
 - [Anthropic — Créer des évaluations solides](https://docs.claude.com/en/docs/test-and-evaluate/develop-tests)
-- [Yao et al., *τ-bench*](https://arxiv.org/abs/2406.12045) : la mesure pass^k
-- [Simon Willison, *The lethal trifecta for AI agents*](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)
-- [Perez et al., *Red Teaming Language Models with Language Models*](https://arxiv.org/abs/2202.03286)
-- [Zheng et al., *Judging LLM-as-a-Judge*](https://arxiv.org/abs/2306.05685) : les biais des juges LLM
+- [Yao et al. 2024, *τ-bench*](https://arxiv.org/abs/2406.12045) : agents avec outils, la mesure pass^k
+- [Miller 2024, *Adding Error Bars to Evals*](https://arxiv.org/abs/2411.00640) : intervalles de confiance, comparaison appariée
+- [Chen, Zaharia, Zou 2023, *How is ChatGPT's behavior changing over time?*](https://arxiv.org/abs/2307.09009) : la dérive d'un modèle au même nom
+
+**LLM-as-judge**
+- [Zheng et al. 2023, *Judging LLM-as-a-Judge*](https://arxiv.org/abs/2306.05685) : accord avec les humains et biais
+- [Wang et al. 2023, *Large Language Models are not Fair Evaluators*](https://arxiv.org/abs/2305.17926) : biais de position
+
+**Attaquer et défendre**
+- [Perez et al. 2022, *Red Teaming Language Models with Language Models*](https://arxiv.org/abs/2202.03286)
+- [Greshake et al. 2023, *Not what you've signed up for*](https://arxiv.org/abs/2302.12173) : l'injection indirecte
+- [Debenedetti et al. 2025, *Defeating Prompt Injections by Design* (CaMeL)](https://arxiv.org/abs/2503.18813)
+- [Simon Willison 2025, *The lethal trifecta for AI agents*](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)
+- [OWASP — Top 10 pour les applications LLM](https://genai.owasp.org/llm-top-10/)
+
+**Cas réels**
+- Moffatt c. Air Canada, Civil Resolution Tribunal de Colombie-Britannique, 2024 CRT 149 (février 2024)
 
 ---
 
