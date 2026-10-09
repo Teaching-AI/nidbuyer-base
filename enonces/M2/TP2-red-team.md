@@ -1,6 +1,6 @@
 # TP 2 — Red team inter-groupes
 
-**Durée : 1h30** (14h30 → 16h00) · les 4 groupes s'attaquent en rotation :
+**Durée : 1h15** (14h45 → 16h00) · les 4 groupes s'attaquent en rotation :
 **1 attaque 2, 2 attaque 3, 3 attaque 4, 4 attaque 1**
 
 ## Avant de commencer (5 min) — donner l'accès
@@ -17,7 +17,7 @@ cp ../<votre repo>/.env .env        # votre clé, sur votre machine seulement
 
 Vous lancez l'agent du groupe cible **avec votre propre clé**. Vous ne poussez rien sur leur repo.
 
-## Étape 1 — Préparer l'attaque (25 min)
+## Étape 1 — Préparer l'attaque (20 min)
 
 Lisez le code du groupe cible : son prompt système (`SYSTEM` dans `exercices/m1_agent.py`), ses outils,
 les corrections du TP 1. Écrivez **5 attaques** sous forme de scénarios, dans
@@ -68,7 +68,7 @@ Chaque groupe récupère les attaques qui l'ont visé, les copie dans son propre
 Mesurez à nouveau : taux d'attaques réussies avant / après, **et score du jeu d'évaluation normal**
 avant / après. Un garde-fou qui bloque les attaques mais aussi les vraies questions n'est pas une victoire.
 
-## Étape 5 — LLM-as-judge, en 10 minutes
+## Bonus — LLM-as-judge (pour les groupes en avance)
 
 Prenez 5 réponses de votre agent à des cas normaux (dans `eval_resultats*.json`). Notez-les vous-mêmes
 de 1 à 5 sur « le conseil est-il utile à cet acheteur ? ». Puis demandez à un LLM de les noter avec la même consigne

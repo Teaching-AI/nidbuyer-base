@@ -23,16 +23,16 @@ on dit « ça passe 34 scénarios sur 40, voici les 6 qui échouent, et voici ce
 
 | Horaire | Contenu |
 |---|---|
-| 9h30 | Rappel du M1, puis vos pires pannes. Pourquoi « ça a l'air de marcher » ne suffit pas |
-| 9h45 | Cours : jeu d'évaluation, sources, critères, trace, pass^k, variance, quota |
+| 9h30 | Rappel du M1, vos pires pannes, le fil rouge du jour (la compétition de 16h45). Pourquoi « ça a l'air de marcher » ne suffit pas |
+| 9h45 | Cours : jeu d'évaluation, sources, critères, SWE-bench, trace, pass^k, variance, quota |
 | 10h45 | **TP 1** — [Jeu d'évaluation automatique](TP1-jeu-evaluation.md) (1 h) |
 | 11h45 | Mise en commun des scores. Cours : le bruit d'un petit jeu, la loi de Goodhart, le jeu caché |
 | 12h15 | Pause déjeuner |
-| 13h30 | Cours : cas réels, LLM-as-judge, red teaming, injection, garde-fous, surveillance en production |
-| 14h30 | **TP 2** — [Red team inter-groupes](TP2-red-team.md) (1h30) |
+| 13h30 | Cours : cas réels, LLM-as-judge, red teaming, injection, garde-fous, le harnais, contexte et sous-agents, surveillance en production (1h15) |
+| 14h45 | **TP 2** — [Red team inter-groupes](TP2-red-team.md) (1h15) |
 | 16h00 | Pause |
-| 16h15 | Ce que P1 attend : le jeu d'évaluation devient un livrable noté |
-| 16h45 | QCM, puis travail de groupe sur P1 jusqu'à 17h30 |
+| 16h15 | Ce que P1 attend (20 min), puis QCM (10 min) |
+| 16h45 | **Lancement du défi Kaggle** Gemma 4 Developer Agent, en binômes, jusqu'à 17h30 |
 
 ## Contenu du cours
 
@@ -157,6 +157,15 @@ Une trace qui échoue devient un scénario. Outils : Langfuse, conventions OpenT
 
 **p50 / p95** : p50 est la médiane. p95 = 95 % des réponses arrivent en moins de ce temps, les 5 % les plus lentes au-delà.
 
+### 8. Le défi Kaggle
+
+Google DeepMind, *Gemma 4 Developer Agent Competition* : un agent (Gemma 4 31B, sans internet) corrige de vrais bugs
+dans des dépôts Python ; le score est la part de bugs dont les tests passent, comme SWE-bench (Jimenez et al., 2023).
+On écrit l'agent en YAML et en Markdown (prompt, skills, sous-agents) : pas de Python, fine-tuning facultatif.
+Règles Kaggle : équipes de 2 (binôme dans le groupe projet), 1 soumission par jour, aucun code partagé entre équipes.
+Point de départ : notebook « Getting Started - Gemma 4 Developer Agent » (onglet Code de la compétition).
+Le kit de départ ne corrige aucun bug (budget d'une minute par bug) : chaque soumission teste une hypothèse.
+
 ## Supports
 
 - Slides : [`M2-evaluer-et-surveiller.pdf`](M2-evaluer-et-surveiller.pdf)
@@ -178,6 +187,8 @@ Une trace qui échoue devient un scénario. Outils : Langfuse, conventions OpenT
 - [Wang et al. 2023, *Large Language Models are not Fair Evaluators*](https://arxiv.org/abs/2305.17926) : biais de position
 
 **Attaquer et défendre**
+- [Jimenez et al. 2023, *SWE-bench*](https://arxiv.org/abs/2310.06770)
+- [Anthropic 2025, *Effective context engineering for AI agents*](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 - [Perez et al. 2022, *Red Teaming Language Models with Language Models*](https://arxiv.org/abs/2202.03286)
 - [Greshake et al. 2023, *Not what you've signed up for*](https://arxiv.org/abs/2302.12173) : l'injection indirecte
 - [Debenedetti et al. 2025, *Defeating Prompt Injections by Design* (CaMeL)](https://arxiv.org/abs/2503.18813)
