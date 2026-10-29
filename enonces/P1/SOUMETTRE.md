@@ -47,7 +47,8 @@ et les pièges connus dans la section 10 du `HARNESS_README.md` (onglet *Data*).
   Tant que la précédente n'est pas notée, vous ne pouvez pas soumettre.
 - En pratique, c'est donc moins d'une soumission par jour. Le journal demande **5 soumissions ou plus d'ici le 2 décembre** :
   c'est faisable, à condition de commencer maintenant.
-- Le compteur du jour se remet à zéro à **minuit UTC** (2 h à Paris, 1 h après le 25 octobre).
+- Le compteur du jour se remet à zéro à **minuit UTC**, soit **1 h du matin à Paris** depuis le passage à l'heure d'hiver.
+- Comptez **20 à 27 h** entre l'envoi et le score (file d'attente Kaggle). Une soumission en attente ne s'annule pas.
 
 ## Erreurs fréquentes
 
@@ -58,6 +59,8 @@ et les pièges connus dans la section 10 du `HARNESS_README.md` (onglet *Data*).
 | « Your team already has 1 pending submission » | La soumission précédente n'est pas encore notée | Attendre. Rien à corriger |
 | Pas de bouton *Submit Prediction* | Règlement non accepté, téléphone non vérifié | Vérifier dans cet ordre |
 | Score très bas (≈ 0,01) | Normal : le kit de départ ne corrige presque rien | C'est votre point de départ |
+| Version de plusieurs heures, notation interminable | Le notebook soumis lance aussi le modèle (sections GPU, test local) | Deux notebooks : `lab` avec GPU pour tester, jamais soumis ; `submit` sans accélérateur pour le zip, seul soumis |
+| Version *Failed* juste après une modification | « Failed to save draft » : la modification n'était pas enregistrée | Recharger la page, vérifier la cellule, attendre « Draft saved », relancer |
 
 ## Ce qui compte pour la note
 
