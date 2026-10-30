@@ -98,7 +98,8 @@ Un résultat qui baisse est aussi une conclusion. Ce qui compte, c'est qu'on pui
   Les idées peuvent circuler, pas le code. Sanction : disqualification des deux équipes.
 - Un seul compte Kaggle par personne.
 - Les notebooks publics de la compétition (onglet *Code*) peuvent être lus et réutilisés : c'est autorisé.
-- Organisation des équipes à partir du 30 octobre : annoncée en séance.
+- **À partir du 30 octobre : une équipe de 4 par groupe** (`EPI-G<n>`), journal dans le repo privé `p1-journal-G<n>`.
+  Le partage de code reste interdit avec **un autre groupe**. Détail : [`SEANCE-1.md`](SEANCE-1.md).
 
 ---
 
@@ -107,9 +108,9 @@ Un résultat qui baisse est aussi une conclusion. Ce qui compte, c'est qu'on pui
 | Points | Critère | Échéance |
 |---|---|---|
 | 2 + 2 | Binôme inscrit · première soumission valide | 16 oct. |
-| 6 | Journal d'expériences : 5 soumissions ou plus, avec hypothèse, mesure, conclusion | 2 déc. |
+| 6 | Journal d'équipe : 5 expériences à partir du 30 oct. (2) · une hypothèse = un changement, prédiction commitée avant soumission (2) · conclusions enchaînées, dont un échec ou une trace analysés (2) | 2 déc. |
 | 2 | Contribution individuelle : chacun signe au moins une expérience | 2 déc. |
-| 4 | Soutenance : chacun présente son expérience et répond à une question | 27 nov. |
+| 4 | Keynote (15 min par équipe) : chacun présente son expérience et répond à une question | 27 nov. |
 | 2 + 2 | Battre la référence (le kit de départ soumis tel quel) · meilleure équipe de la classe (ex æquo si l'écart est faible) | 2 déc. |
 
 Le classement ne compte que pour 4 points sur 20 : être en bas du classement coûte peu,
@@ -126,7 +127,7 @@ ne rien documenter coûte cher.
 |---|---|
 | 9 oct. | Comptes, binôme, première soumission si possible |
 | 16 oct. | Binôme inscrit et première soumission valide (début de séance en autonomie) |
-| 30 oct. | Séance 1 : bilan des premières expériences, plan d'expériences |
+| 30 oct. | Séance 1 : fusion des binômes, plan d'expériences ([`SEANCE-1.md`](SEANCE-1.md)) |
 | 13 nov. | Séance 2 : revue du journal |
 | 27 nov. | Soutenance, sur le classement public |
 | 2 déc. | Rendu final Kaggle ; points de classement sur le classement privé |
